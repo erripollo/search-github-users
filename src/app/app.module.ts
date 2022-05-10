@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchUsersComponent } from './search-users/search-users.component';
+import { SearchCacheComponent } from './search-cache/search-cache.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchUsersComponent
+    SearchUsersComponent,
+    SearchCacheComponent
   ],
   imports: [
     BrowserModule,
