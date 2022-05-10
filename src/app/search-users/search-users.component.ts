@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../services/users.service';
+import { CacheService } from '../services/cache.service';
 
 @Component({
   selector: 'app-search-users',
@@ -12,7 +13,7 @@ export class SearchUsersComponent implements OnInit {
   users?: any[] = [];
   isLoading: boolean = false
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private cacheService: CacheService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,7 @@ export class SearchUsersComponent implements OnInit {
         console.log(users);
         if (users.items.length > 0) {
           this.users = users.items;
-          this.usersService.saveUsersInLocalStorage(keyword, users)
+          this.cacheService.saveUsersInLocalStorage(keyword, users)
         }
         else {
           this.users = undefined
