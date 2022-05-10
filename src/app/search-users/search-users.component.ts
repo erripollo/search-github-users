@@ -25,6 +25,7 @@ export class SearchUsersComponent implements OnInit {
    */
   onSearch(keyword: string): void{
     this.isLoading = true;
+    this.users = [];
     this.usersService.getUsers(keyword)
       .subscribe((users) => {
         console.log(users);

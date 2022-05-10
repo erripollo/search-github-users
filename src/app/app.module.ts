@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { SearchUsersComponent } from './search-users/search-users.component';
 import { SearchCacheComponent } from './search-cache/search-cache.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchUsersComponent,
-    SearchCacheComponent
+    SearchCacheComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

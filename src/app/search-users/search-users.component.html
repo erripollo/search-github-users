@@ -18,7 +18,9 @@
 </div>
 <div class="container">
     <!-- List users -->
-    <div class="list-group" *ngIf="users">
+    <app-users-list [usersLoaded]="users"></app-users-list>
+
+    <!-- <div class="list-group" *ngIf="users">
         <a 
         *ngFor="let user of users"
         href="{{ user.html_url }}"
@@ -32,11 +34,11 @@
                 Visit profile >>
             </div>
         </a>
-    </div>
+    </div> -->
     <!-- Show if not results -->
-    <div *ngIf="!users">
+    <!-- <div *ngIf="!users">
        Not results...
-    </div>
+    </div> -->
     <!-- Show a loader when wait a server response -->
     <div *ngIf="isLoading" class="text-center mt-5">
         <div class="spinner-border text-primary" style="width: 2.5rem; height: 2.5rem;" role="status">
