@@ -23,6 +23,7 @@ export class SearchUsersComponent implements OnInit {
   /**
    * Pass the searched user at the service and return a list of users,
    * and save the data in localStorage troughth the usersService.
+   * If the data are in the cache get it from cache
    * 
    * @param {string} keyword the word with which to search users
    */
@@ -30,28 +31,41 @@ export class SearchUsersComponent implements OnInit {
     const keywordToLowercase = keyword.toLowerCase();
     this.isLoading = true;
     this.users = [];
-    this.usersService.getUsers(keywordToLowercase)
-      .subscribe((users) => {
-        console.log(users);
-        if (users.items.length > 0) {
-          this.users = users.items;
-          const usersForCache: any = users;
-          usersForCache.cache = keywordToLowercase;
-          this.cacheService.saveUsersInLocalStorage(usersForCache)
-        }
-        else {
-          this.users = undefined
-        }
-        this.isLoading = false;
-      })
+    // check if the keyword is in the cache
+    const searchesCache = this.cacheService.getSearchesCache();
+    const filteredCache = searchesCache.filter(el => el.cache == keywordToLowercase);
+    // if the keyword is in the cache get the data from it
+    if (filteredCache.length > 0) {
+      this.users = filteredCache[0].items
+      this.isLoading = false;
+    }
+    // else if the keyword is a empty string don't get results
+    else if (keywordToLowercase.length < 1) {
+      this.users = undefined
+      this.isLoading = false;
+    }
+    // else get the data from the server
+    else {
+      this.usersService.getUsers(keywordToLowercase)
+        .subscribe((users) => {
+          if (users.items.length > 0) {
+            this.users = users.items;
+            const usersForCache: any = users;
+            usersForCache.cache = keywordToLowercase;
+            this.cacheService.saveUsersInLocalStorage(usersForCache)
+          }
+          else {
+            this.users = undefined
+          }
+          this.isLoading = false;
+        })
+    }
   }
-
 
   setIndexInCache() {
     if (!localStorage.getItem('index')) {
       this.index = '0'
       localStorage.setItem('index', this.index)
-      console.log('inizializzazione index = ', localStorage.getItem('index'));
     }
   }
 

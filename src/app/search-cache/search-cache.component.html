@@ -1,6 +1,6 @@
 <div class="jumbotron px-0 py-2 d-flex flex-column justify-content-around">
     <div class="text-center">
-        <h1>Searches Cache</h1>
+        <h1>Cache Searches</h1>
     </div>
     <div class="d-flex justify-content-center flex-wrap jumbo_content px-3 px-md-5">
         <button type="button" class="btn btn-primary mx-2 mb-2" *ngFor="let search of searchesCache" (click)="selectUsersFromCache(search.cache)">{{ search.cache }}</button>
