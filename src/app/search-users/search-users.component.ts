@@ -9,7 +9,7 @@ import { UsersService } from '../services/users.service';
 })
 export class SearchUsersComponent implements OnInit {
   searchedUser: string = '';
-  users: any[] = [];
+  users?: any[] = [];
 
   constructor(private usersService: UsersService) { }
 
@@ -24,8 +24,13 @@ export class SearchUsersComponent implements OnInit {
   onSearch(keyword: string): void{
     this.usersService.getUsers(keyword)
       .subscribe((users) => {
-        //console.log(users);
-        this.users = users.items; 
+        console.log(users);
+        if (users.items.length > 0) {
+          this.users = users.items; 
+        }
+        else {
+          this.users = undefined
+        }
       })
   }
 
