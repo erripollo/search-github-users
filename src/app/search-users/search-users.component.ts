@@ -17,12 +17,7 @@ export class SearchUsersComponent implements OnInit {
   constructor(private usersService: UsersService, private cacheService: CacheService) { }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('index')) {
-      this.index = '0'
-      localStorage.setItem('index', this.index)
-      console.log('inizializzazione index = ', localStorage.getItem('index'));
-      
-    }
+    this.setIndexInCache();
   }
 
   /**
@@ -48,6 +43,15 @@ export class SearchUsersComponent implements OnInit {
         }
         this.isLoading = false;
       })
+  }
+
+  
+  setIndexInCache() {
+    if (!localStorage.getItem('index')) {
+      this.index = '0'
+      localStorage.setItem('index', this.index)
+      console.log('inizializzazione index = ', localStorage.getItem('index'));
+    }
   }
 
 }

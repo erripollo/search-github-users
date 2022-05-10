@@ -17,16 +17,10 @@ export class SearchCacheComponent implements OnInit {
   }
 
   /**
-   * Get the data saved in the localStorage
+   * Get the data saved in the localStorage troughth the cache service
    */
   getSearchesCache(){
-    const cache = this.cacheService.getSearchesCache().filter(el => el != 'index').sort().reverse()
-    for (let i = 0; i < cache.length; i++) {
-      const element = cache[i];
-      const usersJsonString: any = localStorage.getItem(element);
-      const usersJson = JSON.parse(usersJsonString);
-      this.searchesCache.push(usersJson);
-    }
+    this.searchesCache = this.cacheService.getSearchesCache() 
   }
 
   /**
@@ -34,8 +28,6 @@ export class SearchCacheComponent implements OnInit {
    */
   clearCache(): void {
     localStorage.clear()
-    console.log('ciao');
-    
     this.searchesCache = []
   }
 
