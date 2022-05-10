@@ -22,20 +22,21 @@ export class SearchUsersComponent implements OnInit {
 
   /**
    * Pass the searched user at the service and return a list of users,
-   * and save the data in localStorage troughth the usersService 
+   * and save the data in localStorage troughth the usersService.
    * 
    * @param {string} keyword the word with which to search users
    */
   onSearch(keyword: string): void{
+    const keywordToLowercase = keyword.toLowerCase();
     this.isLoading = true;
     this.users = [];
-    this.usersService.getUsers(keyword)
+    this.usersService.getUsers(keywordToLowercase)
       .subscribe((users) => {
         console.log(users);
         if (users.items.length > 0) {
           this.users = users.items;
           const usersForCache: any = users;
-          usersForCache.cache = keyword;
+          usersForCache.cache = keywordToLowercase;
           this.cacheService.saveUsersInLocalStorage(usersForCache)
         }
         else {
@@ -45,7 +46,7 @@ export class SearchUsersComponent implements OnInit {
       })
   }
 
-  
+
   setIndexInCache() {
     if (!localStorage.getItem('index')) {
       this.index = '0'

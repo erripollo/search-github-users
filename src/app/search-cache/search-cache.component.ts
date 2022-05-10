@@ -8,27 +8,32 @@ import { CacheService } from '../services/cache.service';
   styleUrls: ['./search-cache.component.css']
 })
 export class SearchCacheComponent implements OnInit {
-  searchesCache: any[] = []
+  searchesCache: any[] = [];
+  usersFromCache: any[] = [];
 
   constructor(private cacheService: CacheService) { }
 
   ngOnInit(): void {
-    this.getSearchesCache()
+    this.getSearchesCache();
   }
 
   /**
    * Get the data saved in the localStorage troughth the cache service
    */
   getSearchesCache(){
-    this.searchesCache = this.cacheService.getSearchesCache() 
+    this.searchesCache = this.cacheService.getSearchesCache();
   }
 
   /**
    * Clear the data in localStorage
    */
   clearCache(): void {
-    localStorage.clear()
-    this.searchesCache = []
+    localStorage.clear();
+    this.searchesCache = [];
+  }
+
+  selectUsersFromCache(name: string) {
+    this.usersFromCache = this.searchesCache.filter(el => el.cache == name)[0].items;
   }
 
 }

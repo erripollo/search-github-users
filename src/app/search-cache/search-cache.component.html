@@ -1,10 +1,10 @@
 <div class="jumbotron">
     <div class="d-flex justify-content-center flex-wrap container">
-        <button type="button" class="btn btn-primary mx-2 mb-2" *ngFor="let search of searchesCache">{{ search.cache }}</button>
+        <button type="button" class="btn btn-primary mx-2 mb-2" *ngFor="let search of searchesCache" (click)="selectUsersFromCache(search.cache)">{{ search.cache }}</button>
     </div>
     <button type="button" class="btn btn-danger" (click)="clearCache()">Delete Cache</button>
 </div>
 <div class="container">
     <!-- list of users -->
-    <app-users-list></app-users-list>
+    <app-users-list [usersLoaded]="usersFromCache"></app-users-list>
 </div>
