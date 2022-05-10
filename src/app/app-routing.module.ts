@@ -6,16 +6,16 @@ import { SearchCacheComponent } from './search-cache/search-cache.component';
 
 const routes: Routes = [
   {
-    path: 'search-users',
+    path: 'search',
     component: SearchUsersComponent
   },
   {
-    path: 'search-cache',
+    path: 'cache',
     component: SearchCacheComponent
   },
   {
     path: '',
-    redirectTo: 'search-users',
+    redirectTo: 'search',
     pathMatch: 'full'
   }
 ];
