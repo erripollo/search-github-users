@@ -19,6 +19,6 @@ export class UsersService {
    * @returns json of users which contain the keyword
    */
   getUsers(keyword: string): Observable<Users>{
-    return this.http.get<Users>(`${this.url}?q=${keyword}&per_page=10`)
+    return this.http.get<Users>(`${this.url}?q=${keyword}`)
   }
 }

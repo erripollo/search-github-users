@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="container">
-    <!-- List users section -->
+    <!-- List users -->
     <div class="list-group" *ngIf="users">
         <a 
         *ngFor="let user of users"
@@ -33,7 +33,14 @@
             </div>
         </a>
     </div>
+    <!-- Show if not results -->
     <div *ngIf="!users">
        Not results...
+    </div>
+    <!-- Show a loader when wait a server response -->
+    <div *ngIf="isLoading" class="text-center mt-5">
+        <div class="spinner-border text-primary" style="width: 2.5rem; height: 2.5rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
 </div>

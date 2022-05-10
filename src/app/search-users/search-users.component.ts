@@ -10,6 +10,7 @@ import { UsersService } from '../services/users.service';
 export class SearchUsersComponent implements OnInit {
   searchedUser: string = '';
   users?: any[] = [];
+  isLoading: boolean = false
 
   constructor(private usersService: UsersService) { }
 
@@ -22,6 +23,7 @@ export class SearchUsersComponent implements OnInit {
    * @param {string} keyword the word with which to search users
    */
   onSearch(keyword: string): void{
+    this.isLoading = true;
     this.usersService.getUsers(keyword)
       .subscribe((users) => {
         console.log(users);
@@ -31,6 +33,7 @@ export class SearchUsersComponent implements OnInit {
         else {
           this.users = undefined
         }
+        this.isLoading = false;
       })
   }
 
