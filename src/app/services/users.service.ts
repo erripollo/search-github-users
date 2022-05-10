@@ -35,4 +35,8 @@ export class UsersService {
     localStorage.setItem(key, usersJson);
     //console.log(Object.keys(localStorage));
   }
+
+  getSearchesCache(){
+    return Object.keys(localStorage)
+  }
 }
