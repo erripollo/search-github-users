@@ -30,6 +30,7 @@ export class SearchCacheComponent implements OnInit {
   clearCache(): void {
     localStorage.clear();
     this.searchesCache = [];
+    this.usersFromCache= [];
   }
 
   selectUsersFromCache(name: string) {
