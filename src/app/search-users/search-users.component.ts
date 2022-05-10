@@ -18,7 +18,8 @@ export class SearchUsersComponent implements OnInit {
   }
 
   /**
-   * Pass the searched user at the service and return a list of users
+   * Pass the searched user at the service and return a list of users,
+   * and save the data in localStorage troughth the usersService 
    * 
    * @param {string} keyword the word with which to search users
    */
@@ -28,7 +29,8 @@ export class SearchUsersComponent implements OnInit {
       .subscribe((users) => {
         console.log(users);
         if (users.items.length > 0) {
-          this.users = users.items; 
+          this.users = users.items;
+          this.usersService.saveUsersInLocalStorage(keyword, users)
         }
         else {
           this.users = undefined
