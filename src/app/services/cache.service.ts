@@ -8,20 +8,32 @@ export class CacheService {
   constructor() { }
 
   /**
-   * ## Save research data in localStorage
-   * Save in localStorage the researches done and their results
+   * ## Save search data in localStorage
+   * Save in localStorage the searches done and their results
    * 
-   * @param {string} key name from the research done
    * @param {object} value results of the research done  
    */
-   saveUsersInLocalStorage(key: string, value: object) {
+  saveUsersInLocalStorage(value: object) {
+    // Get a index saved in the cache to assign it at users data
+    var index: any = localStorage.getItem('index')
+
     // transform the json to string because the localStorage accept only string data
-    const usersJson = JSON.stringify(value)
-    localStorage.setItem(key, usersJson);
-    //console.log(Object.keys(localStorage));
+    const usersToString = JSON.stringify(value)
+    localStorage.setItem(index, usersToString);
+
+    // increment and save index in localStorage
+    index++
+    localStorage.setItem('index', index);
   }
 
+  /**
+   * ## Get cache data
+   * Get from cache all searches done
+   * @returns array of string with all searches done
+   */
   getSearchesCache(){
     return Object.keys(localStorage)
   }
+
+
 }

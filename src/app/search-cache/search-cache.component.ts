@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UsersService } from '../services/users.service';
 import { CacheService } from '../services/cache.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { CacheService } from '../services/cache.service';
   styleUrls: ['./search-cache.component.css']
 })
 export class SearchCacheComponent implements OnInit {
-  searchesCache: string[] = []
+  searchesCache: any[] = []
 
   constructor(private cacheService: CacheService) { }
 
@@ -17,8 +16,27 @@ export class SearchCacheComponent implements OnInit {
     this.getSearchesCache()
   }
 
+  /**
+   * Get the data saved in the localStorage
+   */
   getSearchesCache(){
-    this.searchesCache = this.cacheService.getSearchesCache()
+    const cache = this.cacheService.getSearchesCache().filter(el => el != 'index').sort().reverse()
+    for (let i = 0; i < cache.length; i++) {
+      const element = cache[i];
+      const usersJsonString: any = localStorage.getItem(element);
+      const usersJson = JSON.parse(usersJsonString);
+      this.searchesCache.push(usersJson);
+    }
+  }
+
+  /**
+   * Clear the data in localStorage
+   */
+  clearCache(): void {
+    localStorage.clear()
+    console.log('ciao');
+    
+    this.searchesCache = []
   }
 
 }
