@@ -1,4 +1,4 @@
-<div class="list-group" *ngIf="usersLoaded">
+<div class="list-group mb-5" *ngIf="usersLoaded">
     <a 
     *ngFor="let user of usersLoaded"
     href="{{ user.html_url }}"
@@ -8,8 +8,9 @@
             <img class="profile_img" src="{{ user.avatar_url }}" alt="user profile image">
             <span class=" ml-4 font-weight-bold">{{ user.login }}</span>
         </div>
-        <div class="d-none d-sm-block">
-            Visit Profile  >
+        <div>
+            <span class="mr-3 d-none d-sm-inline">Visit Profile</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 1.5rem"></i>
         </div>
     </a>
 </div>
