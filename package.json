@@ -1,12 +1,16 @@
 {
-  "name": "serach-github-users",
+  "name": "search-github-users",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "npx compodoc -p tsconfig.doc.json",
+    "compodoc:build": "compodoc -p tsconfig.doc.json",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
+    "compodoc:serve": "compodoc -s"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +23,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@compodoc/compodoc": "^1.1.19",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.6.0",
