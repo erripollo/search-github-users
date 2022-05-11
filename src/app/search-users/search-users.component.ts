@@ -13,6 +13,7 @@ export class SearchUsersComponent implements OnInit {
   users?: any[] = [];
   isLoading: boolean = false
   index: any= ''
+  errorRequest: boolean = false
 
   constructor(private usersService: UsersService, private cacheService: CacheService) { }
 
@@ -30,6 +31,7 @@ export class SearchUsersComponent implements OnInit {
   onSearch(keyword: string): void{
     const keywordToLowercase = keyword.toLowerCase();
     this.isLoading = true;
+    this.errorRequest = false;
     this.users = [];
     // check if the keyword is in the cache
     const searchesCache = this.cacheService.getSearchesCache();
@@ -58,6 +60,11 @@ export class SearchUsersComponent implements OnInit {
             this.users = undefined
           }
           this.isLoading = false;
+        },
+        (error) => {
+          console.log('Error: ', error)
+          this.isLoading = false;
+          this.errorRequest = true
         })
     }
   }

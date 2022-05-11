@@ -22,9 +22,15 @@
 <div class="container">
     <!-- List users -->
     <app-users-list [usersLoaded]="users"></app-users-list>
+    <!-- Loader -->
     <div *ngIf="isLoading" class="text-center mt-5">
         <div class="spinner-border text-primary" style="width: 2.5rem; height: 2.5rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
+    </div>
+    <!-- Error message -->
+    <div *ngIf="errorRequest" class="text-center">
+        <h2> Oops, Something went wrong... 🤔</h2>
+        <p class="lead">Please try again later.</p>
     </div>
 </div>
